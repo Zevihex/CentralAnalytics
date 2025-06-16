@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Data Viewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 font-mono text-white">
+  <h1 class="text-center text-7xl mt-16">My Speedrunning Data Visualized</h1>
+  <p class="text-center text-4xl mt-10">Apply game filter to see different data output</p>
+  <div class="mt-16 text-center">
+    <main class="flex flex-wrap justify-center gap-8 px-4">
+      <img src="data:image/png;base64,{{ plot_data1 }}" alt="Plot" class="mx_auto rounded-lg shadow-lg border border-gray-700 max-w-full">
+      <div class="flex flex-col items-center space-y-8">
+        <form method="POST" class="text-center mt-8">
+          <label for="game" class="text-xl mr-2">Filter by Game:</label>
+          <select name="game" id="game" class="text-black px-2 py-1 rounded">
+            <option value="">-- All Games --</option>
+            {% for game in games %}
+              <option value="{{ game }}" {% if game == selected_game %}selected{% endif %}>{{ game }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="ml-4 px-4 py-1 bg-blue-500 hover:bg-blue-600 rounded">Apply</button>
+        </form>
+        <div class="flex gap-40">
+          <img src="data:image/png;base64,{{ plot_data2 }}" alt="Plot" class="mx_auto rounded-lg shadow-lg border border-gray-700 w-full">
+          <img src="data:image/png;base64,{{ plot_data3 }}" alt="Plot" class="mx_auto rounded-lg shadow-lg border border-gray-700 w-full">
+        </div>
+      </div>
+      <img src="data:image/png;base64,{{ plot_data4 }}" alt="Plot" class="mx_auto rounded-lg shadow-lg border border-gray-700 max-w-full">
+      <img src="data:image/png;base64,{{ plot_data5 }}" alt="Plot" class="mx_auto rounded-lg shadow-lg border border-gray-700 max-w-full">
+      <img src="data:image/png;base64,{{ plot_data6 }}" alt="Plot" class="mx_auto rounded-lg shadow-lg border border-gray-700 max-w-full">
+    </main>
+  </div>
+</body>
+</html>
